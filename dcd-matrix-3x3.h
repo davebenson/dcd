@@ -171,7 +171,9 @@ dcd_matrix_3x3_negate       (DCD_Matrix3x3 a)
 DCD_INLINE double
 dcd_matrix_3x3_det          (DCD_Matrix3x3 a)
 {
-  return ..
+  return a.m[0][0] * (a.m[1][1] * a.m[2][2] - a.m[1][2] * a.m[2][1])
+       - a.m[0][1] * (a.m[1][0] * a.m[2][2] - a.m[1][2] * a.m[2][0])
+       + a.m[0][2] * (a.m[1][0] * a.m[2][1] - a.m[1][1] * a.m[2][0]);
 }
 DCD_INLINE double
 dcd_matrix_3x3_trace        (DCD_Matrix3x3 a)

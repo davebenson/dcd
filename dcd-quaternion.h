@@ -23,12 +23,26 @@ static inline DCD_Quaternion dcd_quaternion_multiply (DCD_Quaternion a, DCD_Quat
   return q;
 }
 
+static inline DCD_Quaternion dcd_quaternion_conjugate (DCD_Quaternion q)
+{
+  DCD_Quaternion rv = DCD_QUATERION_INIT_XYZW (-q.x, -q.y, -q.z, q.w);
+  return rv;
+}
+static inline DCD_Quaternion dcd_quaternion_scale (double s, DCD_Quaternion q)
+{
+  DCD_Quaternion rv = DCD_QUATERION_INIT_XYZW (s*q.x, s*q.y, s*q.z, s*q.w);
+  return rv;
+}
+
+
+static inline DCD_Quaternion dcd_quaternion_reciprocal (DCD_Quaternion a)
+{
+  double f = 1.0 / dcd_quaternion_dot (a, a);
+  return dcd_quaternion_scale (f, dcd_quaternion_conjugate (a));
+}
 static inline DCD_Quaternion dcd_quaternion_divide (DCD_Quaternion a, DCD_Quaternion b)
 {
-  DCD_Quaternion q = {
-  ...
-  };
-  return q;
+  return dcd_quaternion_multiply (a, dcd_quaternion_reciprocal (b));
 }
 
 static inline DCD_Quaternion dcd_quaternion_pow_int (DCD_Quaternion a, int n)
