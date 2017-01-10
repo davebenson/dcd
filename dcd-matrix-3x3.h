@@ -25,6 +25,8 @@ DCD_INLINE double        dcd_matrix_3x3_eltwise_quotient(DCD_Matrix3x3 a,
                                                          DCD_Matrix3x3 b);
 DCD_INLINE double        dcd_matrix_3x3_exp (DCD_Matrix3x3 a);
 DCD_INLINE double        dcd_matrix_3x3_log (DCD_Matrix3x3 a);
+DCD_INLINE DCD_Point3    dcd_matrix_3x3_row (DCD_Matrix3x3 a, unsigned row);
+DCD_INLINE DCD_Point3    dcd_matrix_3x3_col (DCD_Matrix3x3 a, unsigned col);
 
 DCD_Matrix3x3 dcd_matrix_3x3_rotate_x (double radians);
 DCD_Matrix3x3 dcd_matrix_3x3_rotate_y (double radians);
@@ -35,6 +37,13 @@ DCD_Matrix3x3 dcd_matrix_3x3_from_euler_xyz (double x_radians,
                                              double z_radians);
 void          dcd_matrix_3x3_to_euler_xyz   (DCD_Matrix3x3 mat,
                                              double *xyz_radians_out);
+
+
+typedef enum {
+  DCD_ORTHONORMALIZE_ALGORITHM_SUBTRACTIVE
+} DCD_OrthogonalizeAlgorithm;
+DCD_Matrix3x3 dcd_matrix_3x3_orthonormalize (DCD_Matrix3x3 mat,
+                                             DCD_OrthogonalizeAlgorithm algo);
 
 
 DCD_Point3    dcd_matrix_3x3_to_axis_angle  (DCD_Matrix3x3 mat);

@@ -21,11 +21,13 @@ DCD_Vector3    dcd_matrix3x3_to_axisangle   (DCD_Matrix3x3 mat);
 DCD_Quaternion dcd_matrix3x3_to_quaternion  (DCD_Matrix3x3 mat);
 
 //---------------------------------------------------------------------
-//                       ...
+//                  "Poses" - a rotation and a translation
 //---------------------------------------------------------------------
 
 DCD_Twist     dcd_matrix3x4_to_twist       (DCD_Matrix3x4 matrix);
 DCD_Matrix3x4 dcd_twist_to_matrix3x4       (DCD_Twist twist);
 
-DCD_Matrix3x4 dcd_matrix3x4_from_parts (DCD_Matrix3x3 rotation,
-                                        DCD_Point3    translation);
+DCD_Matrix3x4 dcd_matrix3x4_from_parts     (DCD_Matrix3x3 rotation,
+                                            DCD_Point3    translation);
+DCD_Matrix3x3 dcd_matrix3x4_get_rotation   (DCD_Matrix3x4 matrix);
+DCD_Point3    dcd_matrix3x4_get_translation(DCD_Matrix3x4 matrix);
